@@ -20,8 +20,8 @@ export const getInputValue = el =>
 
 export const getSelectValue = el => el.options[el.selectedIndex].value
 
-const Fields = createContext({})
-const SetFields = createContext(() => {})
+const Fields = createContext(null)
+const SetFields = createContext(null)
 
 export const useFormFields = () => useContext(Fields)
 export const useFormSet = () => useContext(SetFields)
@@ -66,6 +66,10 @@ export const Input = ({
 			}}
 		/>
 	)
+}
+
+export const Textarea = props => {
+	return <Input tag='textarea' {...props} />
 }
 
 export const Select = ({ tag: Tag = 'select', ...props }) => {

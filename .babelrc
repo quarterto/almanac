@@ -1,3 +1,6 @@
 {
-	"plugins": ["transform-class-properties", "transform-react-jsx-source"]
+	"plugins": [
+		"@babel/plugin-transform-react-jsx-source",
+		["babel-plugin-styled-components", {fileName: false}]
+	]
 }

@@ -36,6 +36,7 @@ const VisualInput = styled(Label).attrs(() => ({
 `
 
 export const Input = composeStyles(FormControls.Input, VisualInput)
+Input.displayName = 'Input'
 
 export const BonelessInput = composeStyles(
 	FormControls.Input,
@@ -50,14 +51,14 @@ export const BonelessInput = composeStyles(
 	`,
 )
 
-export const Textarea = composeStyles(
-	'textarea',
-	styled(Input)`
-		resize: vertical;
-		min-height: 20em;
-		margin: 0;
-	`,
-)
+const VisualTextarea = styled(VisualInput)`
+	resize: vertical;
+	min-height: 20em;
+	margin: 0;
+`
+
+export const Textarea = composeStyles(FormControls.Textarea, VisualTextarea)
+Textarea.displayName = 'Textarea'
 
 const VisualSelect = styled(VisualInput)`
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' width='10' height='5'%3E%3Cpath d='M 5,5 0,0 10,0 Z'/%3E%3C/svg%3E");
@@ -73,6 +74,7 @@ const VisualSelect = styled(VisualInput)`
 `
 
 export const Select = composeStyles(FormControls.Select, VisualSelect)
+Select.displayName = 'Select'
 
 export const BonelessSelect = composeStyles(
 	FormControls.Select,
@@ -82,3 +84,4 @@ export const BonelessSelect = composeStyles(
 		background-position: right 1em center;
 	`,
 )
+BonelessSelect.displayName = 'BonelessSelect'

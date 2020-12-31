@@ -1,9 +1,13 @@
 import crypto from 'crypto'
 import url from 'url'
-import React from 'react'
 import styled, { css } from 'styled-components'
 
-const Gravatar = styled.img`
+const Gravatar = styled.img.attrs(({ email }) => ({
+	src: email
+		? formatGravatarUrl(email)
+		: 'https://www.gravatar.com/avatar/empty?f=y&d=mp',
+	alt: `Profile picture${email ? ` for ${email}` : ''}`,
+}))`
 	border-radius: 100%;
 	vertical-align: -0.2em;
 	${({ small }) =>
@@ -36,14 +40,4 @@ const formatGravatarUrl = email =>
 		},
 	})
 
-export default ({ email, ...props }) => (
-	<Gravatar
-		src={
-			email
-				? formatGravatarUrl(email)
-				: 'https://www.gravatar.com/avatar/empty?f=y&d=mp'
-		}
-		alt='Profile picture'
-		{...props}
-	/>
-)
+export default Gravatar

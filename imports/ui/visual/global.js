@@ -1,6 +1,6 @@
 import url from 'url'
 import { createGlobalStyle } from 'styled-components'
-import { steel, sky } from '@quarterto/colours'
+import { steel, sky } from '@apaleslimghost/colours'
 import { background } from '../utils/colors'
 
 const buildGoogleFontsUrl = fonts =>

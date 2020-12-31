@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import select from '../utils/select'
 
 export const FlexGrid = styled.div`
@@ -28,10 +28,25 @@ export const Aside = styled.aside`
 
 export const MainGrid = props => <Main as={FlexGrid} {...props} />
 
-export default styled.div`
+const mainGrid = css`
+	[ left-start main-left-start main-start ]
+	minmax(auto, 20em)
+	[ left-end main-right-start center-start ]
+	minmax(auto, 40em)
+	[ right-start main-left-end center-end ]
+	minmax(auto, 20em)
+	[ right-end main-right-end main-end ]
+`
+
+export const FullGrid = styled.div`
 	display: grid;
 	width: 100%;
+	grid-gap: 1rem;
+	padding: 1rem 0;
+	grid-template-columns: ${mainGrid};
+`
 
+export default styled(FullGrid)`
 	/* |---|         main          |---| */
 	/* |---| left | center | right |---| */
 	/* |---|   main-left   |       |---| */
@@ -41,16 +56,7 @@ export default styled.div`
 	grid-template-columns:
 		[ bleed-start ]
 		1fr
-		[ left-start main-left-start main-start ]
-		minmax(auto, 20em)
-		[ left-end main-right-start center-start ]
-		minmax(auto, 40em)
-		[ right-start main-left-end center-end ]
-		minmax(auto, 20em)
-		[ right-end main-right-end main-end ]
+		${mainGrid}
 		1fr
 		[ bleed-end ];
-
-	grid-gap: 1rem;
-	padding: 1rem 0;
 `

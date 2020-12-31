@@ -32,18 +32,6 @@ const SignupFields = () => (
 	</>
 )
 
-const getSubmitAccount = (createAccountMethod = createAccount) => async ({
-	username,
-	email,
-	campaign,
-}) => {
-	await createAccountMethod({ username, email }, campaign)
-	toast.success(
-		`We've sent an email to ${email} to verify your address. Check your inbox.`,
-	)
-	go('/')
-}
-
 export const SignupForm = ({ secret }) => (
 	<Form
 		onSubmit={({ username, email, campaign }) =>
@@ -56,15 +44,25 @@ export const SignupForm = ({ secret }) => (
 	</Form>
 )
 
-export default ({ title, createAccountMethod }) => (
-	<Form onSubmit={getSubmitAccount(createAccountMethod)}>
-		<H2>About you</H2>
+export default ({ title }) => {
+	async function createAccountAndGoHome({ username, email, campaign }) {
+		await createAccount({ username, email }, campaign)
+		toast.success(
+			`We've sent an email to ${email} to verify your address. Check your inbox.`,
+		)
+		go('/')
+	}
 
-		<SignupFields />
+	return (
+		<Form onSubmit={createAccountAndGoHome}>
+			<H2>About you</H2>
 
-		<H2>About your campaign</H2>
-		<CampaignSettings campaign={{ title }} name='campaign' tag={Fragment} />
+			<SignupFields />
 
-		<Button>Create your account</Button>
-	</Form>
-)
+			<H2>About your campaign</H2>
+			<CampaignSettings campaign={{ title }} name='campaign' tag={Fragment} />
+
+			<Button>Create your account</Button>
+		</Form>
+	)
+}

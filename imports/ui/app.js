@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import useRoutes from 'boulevard-react'
 import { Error } from './utils/error'
 import GlobalStyles from './visual/global'
@@ -18,6 +18,8 @@ import Verify from './pages/verify'
 import Enrol from './pages/enrol'
 import Card from './pages/card'
 import EditCard from './pages/edit-card'
+
+const Docs = React.lazy(() => import('../docs'))
 
 const routes = {
 	'/:campaignId/dashboard'({ campaignId }) {
@@ -143,6 +145,22 @@ const routes = {
 					throw a meteor.call error
 				</button>
 			</Layout>
+		)
+	},
+
+	'/__docs/:page'({ page }) {
+		return (
+			<Suspense fallback={null}>
+				<Docs page={page} />
+			</Suspense>
+		)
+	},
+
+	'/__docs'() {
+		return (
+			<Suspense fallback={null}>
+				<Docs page='index' />
+			</Suspense>
 		)
 	},
 

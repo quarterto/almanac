@@ -1,7 +1,7 @@
 import qs from 'querystring'
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { aqua, steel } from '@quarterto/colours'
+import { aqua, steel } from '@apaleslimghost/colours'
 import contrast from 'contrast'
 import { useImage } from '../data/image'
 import { useCampaign } from '../data/campaign'

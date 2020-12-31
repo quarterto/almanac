@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import qs from 'querystring'
 import { useSubscription, useCursor } from '../utils/hooks'
 import styled, { css } from 'styled-components'
-import colours from '@quarterto/colours'
+import colours from '@apaleslimghost/colours'
 
 import { UnsplashPhotos } from '../../lib/collections'
 import { FlexGrid } from '../visual/grid'

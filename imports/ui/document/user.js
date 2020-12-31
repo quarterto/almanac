@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import colours from '@quarterto/colours'
+import colours from '@apaleslimghost/colours'
 import Gravatar from '../visual/gravatar'
 import { Label, LabelBody } from '../visual/primitives'
 import { useOwner } from '../data/owner'

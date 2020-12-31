@@ -29,7 +29,7 @@ import _ from 'lodash'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { FlexGrid } from '../visual/grid'
 import { Dropdown } from '../visual/primitives'
-import colours from '@quarterto/colours'
+import colours from '@apaleslimghost/colours'
 
 export const CardSplash = ({ card }) => {
 	const { image, ready } = useImage(card.cover)

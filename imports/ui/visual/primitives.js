@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import colours from '@quarterto/colours'
+import colours from '@apaleslimghost/colours'
 import contrast from 'contrast'
 import composeStyles from '@quarterto/styled-compose'
 
