@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <% if content_for? :title %>
+                <%= content_for :title %> ✢
+            <% end %>
+            Almanac
+        </title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:ital,wght@0,400..900;1,400..900&family=Crimson+Pro:ital,wght@0,400..700;1,400..700&display=swap">
+        <%= javascript_include_tag 'application' %>
+        <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    </head>
+
+    <%= content_tag :body, data: ({ controller: content_for(:page_controller) }.merge(@page_data || {})), class: ('full-bleed' if @full_bleed) do %>
+        <header class="toolbar">
+            <%= link_to root_url do %>
+                <%= image_tag 'logo.svg', class: 'logo', alt: 'Almanac' %>
+            <% end %>
+            <% if content_for? :nav %>
+                <nav>
+                    <%= content_for :nav %>
+                </nav>
+            <% end %>
+
+            <% if current_user && !@full_bleed %>
+                <aside>
+                  <%= render current_user do %>
+                    <% if current_user.notification_count > 0 %>
+                        <span class="badge notification">
+                            <%= current_user.notification_count %>
+                        </span>
+                    <% end %>
+                  <% end %>
+                  <%= link_to logout_path do %>
+                    <i class="fa fa-sign-out"></i>
+                    Log out
+                <% end %>
+                </aside>
+            <% end %>
+        </header>
+
+        <%= content_for?(:body) ? yield(:body) : yield %>
+    <% end %>
+</html>

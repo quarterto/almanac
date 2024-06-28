@@ -1,0 +1,29 @@
+<% content_for :header do %>
+   <h1>Add something...</h1>
+<% end %>
+
+<% content_for :nav do %>
+   <%= link_to @campaign do %>
+      <h3><%= @campaign.name %></h3>
+   <% end %>
+<% end %>
+
+<div class="grid">
+   <% @types.each do |type| %>
+      <% card = type.new(card: Card.new) %>
+      <%= form_with model: [@campaign, card.card], html: { class: :card }, namespace: type.model_name do |f| %>
+         <%= f.hidden_field :actable_type %>
+         <%= f.fields_for :actable, card.actable do |a| %>
+            <%= a.hidden_field :id %>
+         <% end %>
+
+         <%= f.button class: 'link-button' do %>
+            <header>
+               <%= render 'icon_header', level: 3, title: type.model_name.human, icon: type.icon, label: type.model_name.human %>
+            </header>
+
+            <p><%= type.description %></p>
+         <% end %>
+      <% end %>
+   <% end %>
+</div>

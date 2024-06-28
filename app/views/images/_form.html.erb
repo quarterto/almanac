@@ -1,0 +1,12 @@
+<%= form.fields_for :image, image ||= Image.new(actable: UnsplashImage.new) do |f| %>
+	<%= f.hidden_field :actable_type %>
+	<%= f.fields_for :actable, image.specific do |a| %>
+		<%= a.label :unsplash_id %>
+		<div data-controller="unsplash-search" data-unsplash-search-field-name-value="<%= "#{a.object_name}[unsplash_id]" %>">
+			<input data-action="input->unsplash-search#search" type="search">
+			<div class="grid" data-unsplash-search-target="results">
+				<% if image.persisted? %><div class="image-select"><%= render image.specific %></div><% end %>
+			</div>
+		</div>
+	<% end %>
+<% end %>

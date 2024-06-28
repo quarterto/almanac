@@ -1,0 +1,37 @@
+<% content_for :page_controller, :dashboard %>
+<% @page_data = { dashboard_slug_value: @campaign.slug } %>
+<% @full_bleed = true %>
+
+<% content_for :nav do %>
+	<%= link_to @campaign do %>
+		<h3><%= @campaign.name %></h3>
+	<% end %>
+
+	<% unless @presenting %>
+		<%= link_to(campaign_dashboard_path(@campaign, present: true), target: '_blank', data: { controller: 'popup-link', action: 'popup-link#open' }) do %>
+			<i class="fa fa-television"></i>
+			Present dashboard
+		<% end %>
+	<% end %>
+<% end %>
+
+<% if @current_location %>
+	<%= render 'cards/header', card: @current_location, allow_edit: false %>
+<% else %>
+	<%= render 'campaigns/header', campaign: @campaign %>
+<% end %>
+
+<div class="grid">
+	<%= render 'quests/list', quests: @campaign.quests %>
+
+	<% if @current_location %>
+		<%# TODO more dynamic sorting %>
+		<%= render @current_location.children %>
+		<%= render @current_location.quests %>
+		<%= render @current_location.objectives %>
+		<%= render @current_location.documents %>
+
+	<% else %>
+		<%= render @campaign.cards.map(&:specific) %>
+	<% end %>
+</div>

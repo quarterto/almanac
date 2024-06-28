@@ -1,0 +1,29 @@
+<% content_for :title, @card.friendly_title %>
+
+<% content_for :nav do %>
+   <%= link_to @campaign do %>
+      <h3> <%= @campaign.name %> </h3>
+   <% end %>
+
+   <% if content_for? :card_nav %>
+      <%= content_for :card_nav %>
+   <% end %>
+<% end %>
+
+<% unless content_for?(:header) %>
+   <%= render 'header', card: @card %>
+<% end %>
+
+<% content_for :before do %>
+   <%= render 'content', card: @card %>
+<% end %>
+
+<% content_for :after do %>
+   <% if @card.persisted? %>
+      <%= render @card.card_links %>
+   <% end %>
+   <%= render 'form', card: @card.card %>
+<% end %>
+
+<% @content_class = 'grid' %>
+<%= render template: 'layouts/header_and_content' %>

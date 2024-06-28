@@ -1,0 +1,24 @@
+<% image_class ||= '' %>
+<% size ||= :thumb %>
+
+<% if image %>
+	<%= render image.specific, { tag_name: 'header' }.reverse_merge(local_assigns) do %>
+		<div class="splash-wrapper">
+			<div class="splash-content">
+				<%= yield %>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+	<header class="<%= image_class %>">
+		<% unless size == :thumb %>
+			<div class="splash-wrapper">
+				<div class="splash-content">
+		<% end %>
+				<%= yield %>
+		<% unless size == :thumb %>
+				</div>
+			</div>
+		<% end %>
+	</header>
+<% end %>

@@ -1,0 +1,8 @@
+<% campaign_user ||= nil %>
+
+<%= link_to user, class: 'user' do %>
+   <%= image_tag user.gravatar, alt: user.username, class: :gravatar, width: 32 %>
+   <%= user.username %>
+
+   <%= yield %>
+<% end %>

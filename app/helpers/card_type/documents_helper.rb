@@ -1,0 +1,2 @@
+module CardType::DocumentsHelper
+end

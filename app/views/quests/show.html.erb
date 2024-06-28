@@ -1,0 +1,19 @@
+<div class="card">
+    <h3>Objectives</h3>
+    <%= render 'objectives/list', objectives: @card.objectives %>
+    <% new_objective = CardType::Objective.new(quest: @card, card: Card.new) %>
+    <%= form_with model: [@campaign, new_objective.card] do |form| %>
+        <%= form.text_field :title, placeholder: 'New objective' %>
+        <%= form.hidden_field :actable_type %>
+        <%= hidden_field :redirect_back, true %>
+        <%= form.fields_for :actable, new_objective do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.hidden_field :quest_id %>
+            <%= f.submit %>
+        <% end %>
+    <% end %>
+</div>
+
+<% if @card.location %>
+    <%= render @card.location %>
+<% end %>

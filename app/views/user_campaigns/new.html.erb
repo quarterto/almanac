@@ -1,0 +1,20 @@
+<% content_for :title, "Join #{@campaign.name}" %>
+
+<% content_for :header do %>
+  <h1>Join <%= @campaign.name %></h1>
+
+  <% unless @campaign.tagline.blank? %>
+    <p><%= @campaign.tagline %></p>
+  <% end %>
+<% end %>
+
+<div class="grid">
+	<%# TODO login/register %>
+	<div class="card">
+		<%= form_with model: [@campaign, @campaign.campaign_users.build(user: current_user)] do |form| %>
+			<%= hidden_field_tag :token, @token %>
+			<%= form.hidden_field :user_id %>
+			<%= form.submit 'Join' %>
+		<% end %>
+	</div>
+</div>

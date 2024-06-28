@@ -1,0 +1,74 @@
+@import 'setup';
+
+$header-height: 3.5em;
+$header-padding: 0.75em;
+
+%toolbar-item {
+	display: block;
+	padding: $header-padding;
+	height: $header-height;
+	line-height: $header-height - 2 * $header-padding;
+}
+
+.toolbar {
+	height: $header-height;
+	border-bottom: 1px solid $colour-outline;
+	display: flex;
+
+	.full-bleed & {
+		position: absolute;
+		z-index: 3;
+		border-bottom: none;
+		color: $colour-white;
+		width: 100%;
+
+		.logo {
+			filter: invert(1);
+		}
+
+		background: scrimGradient(
+			$colour-slate,
+			'to bottom'
+		);
+	}
+
+	a {
+		@extend %toolbar-item;
+		color: inherit;
+		text-decoration: none;
+
+		.ra, .fa {
+			margin-right: 0.5ch;
+		}
+	}
+
+	a:hover {
+		background: $colour-outline;
+	}
+
+	.logo {
+		height: 2em;
+	}
+
+	h3 {
+		font-variant: small-caps;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+
+	nav, aside {
+		display: flex;
+	}
+
+	aside {
+		margin-left: auto;
+	}
+
+	nav::before {
+		content: '';
+		margin: ($header-padding / 2) 0;
+		width: 1px;
+		background: currentColor;
+		opacity: 0.7;
+	}
+}

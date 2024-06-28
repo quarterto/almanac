@@ -1,0 +1,17 @@
+@import 'setup';
+
+.badge {
+	background: $colour-slate;
+	color: white;
+	font-size: 0.8em;
+	padding: 0.2em 0.4em;
+	border-radius: 1em;
+	display: inline-block;
+	vertical-align: 0.5ch;
+	line-height: 1;
+
+	&.notification {
+		background: $colour-crimson;
+		font-size: 0.7em;
+	}
+}

@@ -1,0 +1,2 @@
+module CardType::LocationHelper
+end

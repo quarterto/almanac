@@ -1,0 +1,65 @@
+@import 'setup';
+
+body {
+	font-family: $font-body;
+}
+
+h1, h2, h3 {
+	font-family: $font-heading;
+	font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+
+	.ra, .fa {
+		font-size: 0.8em;
+	}
+}
+
+%link {
+	&, &:visited {
+		color: inherit;
+	}
+
+	&:hover {
+		text-decoration-thickness: 2px;
+	}
+
+	&:active {
+		text-decoration-thickness: 3px;
+	}
+}
+
+a {
+	@extend %link;
+}
+
+ul, ol {
+	padding-left: 1em;
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+.ce-block i {
+	&.fa, &.ra {
+		font-style: normal;
+	}
+}
+
+blockquote {
+	margin: 0.5rem 0;
+	padding: 0.5rem 1rem;
+	border-left: 3px solid $colour-outline;
+	background: $colour-fade;
+
+	:last-child {
+		margin-bottom: 0;
+	}
+
+	:first-child {
+		margin-top: 0;
+	}
+}

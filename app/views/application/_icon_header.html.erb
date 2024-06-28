@@ -1,0 +1,18 @@
+<% level ||= 1 %>
+<% title ||= nil %>
+<% label ||= nil %>
+
+<h<%= level %>>
+   <% if icon %>
+      <i
+         class="<%= icon %>"
+         <% if label %>
+            aria-role="image" aria-label="<%= label %>"
+         <% else %>
+            aria-hidden="true"
+         <% end %>
+      ></i>
+   <% end %>
+
+   <%= title || yield %>
+</h<%= level %>>

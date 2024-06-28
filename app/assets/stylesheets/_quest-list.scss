@@ -1,0 +1,21 @@
+.quest-list {
+	grid-column: span 2;
+
+	h3 {
+		font-size: 2em;
+	}
+}
+
+.objective-list {
+	li {
+		list-style-type: '◆';
+	}
+
+	li:first-child {
+		list-style-type: '❖';
+	}
+
+	::marker {
+		margin-right: 1ch;
+	}
+}

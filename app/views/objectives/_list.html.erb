@@ -1,0 +1,13 @@
+<% link = true if local_assigns[:link].nil? %>
+
+<ul class="objective-list">
+   <% objectives.each do |objective| %>
+      <li>
+         <% if link %>
+            <%= link_to objective.friendly_title, [objective.campaign, objective] %>
+         <% else %>
+            <%= objective.friendly_title %>
+         <% end %>
+      </li>
+   <% end %>
+</ul>

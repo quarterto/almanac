@@ -1,0 +1,76 @@
+@import 'setup';
+@import 'layout';
+
+.splash {
+	position: relative;
+	width: 100%;
+	min-height: 10em;
+	max-height: 20vh;
+	height: 30vw;
+	border-bottom: 1px solid $colour-outline;
+
+	&.image {
+		height: 40vw;
+		max-height: 30vh;
+	}
+
+	.full-bleed & {
+		height: 30vh;
+		min-height: 14em;
+	}
+}
+
+.splash-wrapper {
+	.image & {
+		background: scrimGradient(
+			$colour-slate,
+			'to top'
+		);
+
+		color: $colour-white;
+	}
+
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 2;
+	padding: 1%;
+
+	.full-bleed & {
+		padding: 0;
+	}
+}
+
+.splash-content {
+	@extend .content;
+	text-align: center;
+
+	.full-bleed & {
+		text-align: left;
+	}
+
+	.image & > * {
+		-webkit-text-stroke: calc(0.025em + 1px) rgba($colour-slate, 50%);
+		paint-order: stroke fill;
+	}
+
+	h1 {
+		font-size: 4em;
+		margin: 0;
+	}
+
+	h2 {
+		font-size: 2em;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	p {
+		margin: 0;
+	}
+}

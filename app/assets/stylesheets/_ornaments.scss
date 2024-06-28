@@ -1,0 +1,25 @@
+@font-face {
+	font-family: 'PC Ornaments';
+	font-display: optional;
+	src: font-url('pc-ornaments.woff2');
+}
+
+.ornamented {
+	display: inline-flex;
+	width: 100%;
+	align-items: center;
+
+	&::after, &::before {
+		content: '';
+		height: 1px;
+		background: currentColor;
+		flex: 1;
+	}
+}
+
+.ornament {
+	font-family: 'PC Ornaments';
+	font-size: 0.8em;
+	user-select: none;
+	margin: 0.1em 0.25ch 0;
+}

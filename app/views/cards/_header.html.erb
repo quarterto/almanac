@@ -1,0 +1,41 @@
+<% allow_edit = local_assigns.has_key?(:allow_edit) ? allow_edit : card.editable?(current_user) %>
+
+<% content_for :header do %>
+   <% if card.parent %>
+      <%= link_to [card.parent.campaign, card.parent] do %>
+      	<% if card.parent.specific.model_name == card.specific.model_name %>
+            <h2><%= card.parent.friendly_title %></h2>
+         <% else %>
+            <%= render 'icon_header', {
+               level: 2,
+               title: card.parent.friendly_title,
+               icon: card.parent.icon,
+               label: card.parent.specific.model_name.human
+            } %>
+         <% end %>
+      <% end %>
+   <% end %>
+
+   <%= render 'icon_header', icon: card.icon, label: card.specific.model_name.human do %>
+      <% if allow_edit %>
+         <%= form_with model: [card.campaign, card.acting_as], data: { controller: 'autosave', action: 'input->autosave#save' }, class: 'inline-form' do |form| %>
+            <%= form.text_field :title,
+               class: 'inline-input autosize-input',
+               data: { controller: 'auto-size-input', action: 'input->auto-size-input#update' },
+               placeholder: "#{card.specific.model_name.human} title...",
+               autofocus: card.title.blank?
+            %>
+         <% end %>
+      <% else %>
+         <%= card.friendly_title %>
+      <% end %>
+   <% end %>
+
+   <% if allow_edit %>
+      <%= form_with model: [card.campaign, card.acting_as], data: { controller: 'autosave', action: 'input->autosave#save' } do |form| %>
+         <%= form.text_field :description, class: 'inline-input autosize-input', data: { controller: 'auto-size-input', action: 'input->auto-size-input#update' }, placeholder: 'Description...' %>
+      <% end %>
+   <% else %>
+      <%= card.description %>
+   <% end %>
+<% end %>

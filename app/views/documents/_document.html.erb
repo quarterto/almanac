@@ -1,0 +1,22 @@
+<div class="paper">
+	<% if local_assigns.key?(:card_link) && document.editable?(current_user) %>
+		<div class="card-actions">
+			<%= button_to [document.campaign, document.card, card_link], method: :delete do %>
+				<i class="fa fa-chain-broken"></i>
+			<% end %>
+		</div>
+	<% end %>
+
+	<%= document.content_html %>
+
+	<%= link_to [document.campaign, document.specific] do %>
+		<header>
+			<%= render 'icon_header',
+				level: 4,
+				title: document.friendly_title,
+				icon: document.icon,
+				label: document.specific.model_name.human
+			%>
+		</header>
+	<% end %>
+</div>

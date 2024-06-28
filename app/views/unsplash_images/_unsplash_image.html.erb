@@ -1,0 +1,20 @@
+<% tag_name ||= 'div' %>
+<% image_class ||= '' %>
+<% size ||= :thumb %>
+
+<%= content_tag tag_name, {
+	class: "image #{image_class}",
+	style: "--image-color: #{unsplash_image.photo.color}"
+} do %>
+	<%= tag.img(
+		alt: unsplash_image.photo.description,
+		src: unsplash_image.photo.urls[size] + '&dpr=2&q=30',
+	) %>
+
+	<% unless size == :thumb %>
+		<div class="image-attribution">
+			Photo by <%= link_to unsplash_image.user.name, unsplash_image.user.links.html, target: :_blank %> on <a href="https://unsplash.com" target="_blank">Unsplash</a>
+		</div>
+	<% end %>
+	<%= yield if block_given? %>
+<% end %>

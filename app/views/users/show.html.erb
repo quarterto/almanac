@@ -1,0 +1,27 @@
+<% content_for :title, "#{@user.username}'s campaigns" %>
+
+<% content_for :header do %>
+  <h1>
+   <%= image_tag @user.gravatar(size: 160), alt: @user.username, class: :gravatar, width: 80 %>
+    <%= @user.username %>'s campaigns
+  </h1>
+<% end %>
+
+<% content_for :nav do %>
+  <% if @user == current_user %>
+    <%= link_to [:edit, @user] do %>
+      <i class="fa fa-gears"></i>
+      Account settings
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="grid">
+  <%= render @user.campaigns %>
+
+  <% if @user == current_user and @user.invites.exists? %>
+    <% @user.invites.each do |invite| %>
+      <%= render invite.campaign, invite: invite %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,63 @@
+@import "setup";
+
+* {
+	box-sizing: border-box;
+}
+
+.content {
+	max-width: 70em;
+	margin: 0 auto;
+	padding: 1rem;
+
+	.full-bleed & {
+		margin: 0;
+		max-width: none;
+		width: 100%;
+	}
+}
+
+.grid {
+	display: grid;
+	gap: 1em;
+	grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+	grid-template-rows: masonry;
+}
+
+.wide {
+	grid-column: span 2;
+}
+
+.editor, .paper:has(.editor) {
+	grid-column: span 3;
+	padding-right: 2em;
+}
+
+.editor p.is-editor-empty:not(.has-focus):first-child::before {
+	color: $colour-outline;
+	content: attr(data-placeholder);
+	float: left;
+	height: 0;
+	pointer-events: none;
+ }
+
+.ProseMirror {
+	&:focus {
+		outline: none;
+	}
+
+	// space for the drag handles that's in the editor for mouse events
+	margin-left: -2em;
+	padding-left: 2em;
+
+	// space to drop after the last node
+	padding-bottom: 2em;
+}
+
+.note-drag-handle {
+	position: absolute;
+	cursor: grab;
+
+	&:active {
+		cursor: grabbing;
+	}
+}

@@ -1,0 +1,28 @@
+<div class="card">
+	<div class="card-actions">
+		<% if local_assigns.key?(:card_link) && card.editable?(current_user) %>
+			<%= button_to [card.campaign, card, card_link], method: :delete do %>
+				<i class="fa fa-chain-broken"></i>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= link_to [card.campaign, card.specific] do %>
+		<%= render 'image_header', image: card.image do %>
+			<%= render 'icon_header',
+				level: 3,
+				title: card.friendly_title,
+				icon: card.icon,
+				label: card.specific.model_name.human
+			%>
+		<% end %>
+	<% end %>
+
+	<% if card.description.blank? %>
+		<%= card.excerpt %>
+	<% else %>
+		<p><%= card.description %></p>
+	<% end %>
+
+	<%= yield %>
+</div>

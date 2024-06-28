@@ -1,0 +1,46 @@
+<% content_for :header do %>
+   <h1><%= @campaign.name || 'New campaign' %></h1>
+<% end %>
+
+<% content_for :nav do %>
+   <%= link_to @campaign do %>
+      <h3><%= @campaign.name %></h3>
+   <% end %>
+<% end %>
+
+<%= form_with(model: @campaign) do |form| %>
+  <% if @campaign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+
+      <ul>
+        <% @campaign.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tagline %>
+    <%= form.text_field :tagline %>
+  </div>
+
+  <div class="field">
+      <%= render 'images/form', image: @campaign.image, form: form %>
+  </div>
+
+  <div class="field">
+    <%= form.label :public %>
+    <%= form.check_box :public %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

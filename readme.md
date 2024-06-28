@@ -4,13 +4,23 @@
 
 ## getting started
 
-You'll need node/npm. Install [Meteor](https://www.meteor.com/):
+you will need:
+
+* Ruby 3.0 (i recommend using [`rbenv`](https://github.com/rbenv/rbenv))
+* Probably easiest to install Rails as a system gem idk `gem install rails`
+* Node 12, npm, and yarn (`npm install -g yarn`) (yeah i know i can't work out how to make rails not want it)
+* Postgres (`brew install postgresql ; brew services start postgresql ; createdb ; psql -c 'create database almanac_development;`)
+* A [`.env` file](https://github.com/bkeepers/dotenv) with our `UNSPLASH_ACCESS_KEY` and `UNSPLASH_SECRET_KEY`
+
+run:
 
 ```sh
-curl https://install.meteor.com/ | sh
+bundle
+npm install
+npm start
 ```
 
-Then `npm install` and `npm start` and you're away on [localhost:3000](http://localhost:3000).
+npm runs Rails and the webpack dev server. yeah whatever i'm a node dev really
 
 ## licence
 

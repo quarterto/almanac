@@ -1,0 +1,80 @@
+<% content_for :title, "#{@campaign.name} members" %>
+
+<% content_for :nav do %>
+  <%= link_to @campaign do %>
+    <h3><%= @campaign.name %></h3>
+  <% end %>
+<% end %>
+
+<% content_for :header do %>
+  <h1><%= @campaign.name %></h1>
+
+  <% unless @campaign.tagline.blank? %>
+    <p><%= @campaign.tagline %></p>
+  <% end %>
+<% end %>
+
+<div class="grid">
+  <div class="paper wide">
+    <h3>Members</h3>
+    <table>
+      <% @campaign.campaign_users.order(:access).each do |campaign_user| %>
+        <tr>
+          <td width="100%">
+            <%= render campaign_user.user, campaign_user: campaign_user %>
+          </td>
+          <td align="right">
+            <span class="badge">
+              <%= campaign_user.access.to_s.humanize %>
+            </span>
+          </td>
+          <% if @campaign.owner? current_user && @campaign.campaign_users.count > 1 %>
+            <td>
+              <%= button_to [@campaign, campaign_user], method: :delete do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <% if @campaign.owner? current_user %>
+    <div class="card">
+      <h3>Invite...</h3>
+      <%= form_with(model: [@campaign, @campaign.campaign_users.build]) do |form| %>
+        <%= form.fields_for :user do |f| %>
+          <div class="field">
+            <%= f.label :username %>
+            <%= f.text_field :username %>
+          </div>
+        <% end %>
+        <div class="field">
+          <%= form.label :access %>
+          <%= form.select :access, UserCampaign.accesses.keys.reverse.map { [_1.humanize, _1] } %>
+        </div>
+        <%= form.submit %>
+      <% end %>
+    </div>
+
+    <% if @campaign.pending_invites.exists? %>
+      <div class="card">
+        <h3>Pending invites</h3>
+        <ul>
+          <% @campaign.pending_invites.each do |campaign_user| %>
+            <li>
+            <%= render campaign_user.user, campaign_user: campaign_user %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="card">
+      <h3>Invite link</h3>
+      <p>This link allows anybody to join your campaign. Use with caution.</p>
+      <%= text_field_tag :join, campaign_join_url(@campaign, {token: @campaign.invite_token}), readonly: true %>
+    </div>
+  <% end %>
+</div>

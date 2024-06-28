@@ -1,0 +1,10 @@
+<% content_for :nav do %>
+  <%= link_to new_campaign_path do %>
+    <i class="fa fa-plus"></i>
+    New campaign
+  <% end %>
+<% end %>
+
+<div class="grid">
+  <%= render @campaigns %>
+</div>

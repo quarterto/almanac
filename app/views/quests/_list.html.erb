@@ -1,0 +1,11 @@
+<div class="quest-list">
+	<% quests.each do |quest| %>
+		<div>
+			<%= ornamented :dotted_rune, as: 'h3' do %>
+				<%= quest.friendly_title %>
+			<% end %>
+
+			<%= render 'objectives/list', objectives: quest.objectives, link: false %>
+		</div>
+	<% end %>
+</div>

@@ -1,131 +1,36 @@
 {
-	"name": "almanac",
-	"version": "0.0.0-development",
-	"description": "",
-	"scripts": {
-		"prestart": "open-once-listening --timeout 120 http://localhost:3000 &",
-		"start": "meteor",
-		"heroku-postbuild": "heroku-version-infer && package-version-github-release",
-		"test": "eslint client server imports",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/quarterto/Almanac.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/quarterto/Almanac/issues"
-	},
-	"homepage": "https://github.com/quarterto/Almanac#readme",
-	"dependencies": {
-		"@apaleslimghost/only-valid-attributes": "^1.2.0",
-		"@apaleslimghost/rpg-awesome-list": "^1.0.0",
-		"@babel/runtime": "^7.4.4",
-		"@quarterto/campaign-name-generator": "^1.0.0",
-		"@quarterto/colours": "^1.5.0",
-		"@quarterto/form-json": "^1.0.0",
-		"@quarterto/heroku-version-infer": "^4.0.1",
-		"@quarterto/package-version-github-release": "^1.2.0",
-		"@quarterto/remove-array-index": "^1.0.0",
-		"@quarterto/request-fullscreen": "^1.0.0",
-		"@quarterto/styled-compose": "^1.1.0",
-		"@quarterto/update-path": "^1.5.0",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"bcrypt": "^3.0.2",
-		"boulevard-react": "^1.0.4",
-		"contrast": "^1.0.1",
-		"core-js": "^2.5.3",
-		"dream-date": "^0.5.0",
-		"email-regex": "^3.0.0",
-		"formdata-polyfill": "^3.0.9",
-		"fuse.js": "^3.2.1",
-		"lodash": "^4.17.4",
-		"meteor-node-stubs": "~0.2.4",
-		"param-case": "^2.1.1",
-		"pluralize": "^3.1.0",
-		"polished": "^1.2.1",
-		"prop-types": "^15.6.0",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0",
-		"react-grid-layout": "^0.18.3",
-		"react-helmet": "^6.0.0",
-		"react-ionicons": "^1.5.7",
-		"react-markdown": "^4.0.4",
-		"react-modal": "^3.8.1",
-		"react-popover": "^0.5.3",
-		"react-portal": "^3.2.0",
-		"react-toastify": "^4.2.0",
-		"react-typeahead": "^2.0.0-alpha.5",
-		"remark-behead": "^2.1.0",
-		"string-hash": "^1.1.3",
-		"styled-components": "^4.4.1",
-		"tiny-relative-date": "^1.3.0",
-		"use-history": "^1.3.4",
-		"use-interval": "^1.1.0"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.7.5",
-		"@babel/plugin-transform-react-jsx-source": "^7.8.3",
-		"@quarterto/eslint-config": "^1.4.0",
-		"@quarterto/open-once-listening": "^1.3.0",
-		"@quarterto/prettier": "^1.1.0",
-		"@storybook/addon-actions": "^5.2.8",
-		"@storybook/addon-console": "^1.2.1",
-		"@storybook/addon-links": "^5.2.8",
-		"@storybook/addons": "^5.2.8",
-		"@storybook/react": "^5.2.8",
-		"babel-eslint": "^10.0.1",
-		"babel-loader": "^8.0.6",
-		"eslint": "^7.0.0",
-		"eslint-plugin-react-hooks": "^2.2.0",
-		"husky": "^2.3.0",
-		"lint-staged": "^10.2.2",
-		"prettier": "^1.17.1"
-	},
-	"eslintConfig": {
-		"parser": "babel-eslint",
-		"parserOptions": {
-			"ecmaVersion": "2019"
-		},
-		"extends": [
-			"@quarterto"
-		],
-		"plugins": [
-			"react-hooks"
-		],
-		"rules": {
-			"react-hooks/rules-of-hooks": "error",
-			"react-hooks/exhaustive-deps": "warn",
-			"camelcase": [
-				"error",
-				{
-					"allow": [
-						"api_token",
-						"per_page",
-						"order_by"
-					]
-				}
-			],
-			"meteor/no-session": "off"
-		},
-		"settings": {
-			"import/resolver": "meteor"
-		}
-	},
-	"prettier": "@quarterto/prettier",
-	"lint-staged": {
-		"*.{js,json}": [
-			"prettier --write"
-		]
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push": "npm test"
-		}
-	}
+  "scripts": {
+    "start": "nf -j Procfile.dev start",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo": "^8.0.4",
+    "@rails/actioncable": "^6.0.3-7",
+    "@rails/ujs": "^7.0.0",
+    "@tiptap-pro/extension-emoji": "^2.8.9",
+    "@tiptap/core": "^2.4.0",
+    "@tiptap/extension-bubble-menu": "^2.4.0",
+    "@tiptap/extension-floating-menu": "^2.4.0",
+    "@tiptap/extension-focus": "^2.4.0",
+    "@tiptap/extension-mention": "^2.4.0",
+    "@tiptap/extension-placeholder": "^2.4.0",
+    "@tiptap/pm": "^2.4.0",
+    "@tiptap/starter-kit": "^2.4.0",
+    "blurhash": "^1.1.3",
+    "esbuild": "^0.21.5",
+    "htm": "^3.1.0",
+    "jsx-dom": "~8.0",
+    "lodash.debounce": "^4.0.8",
+    "rpg-awesome": "^0.2.0",
+    "tippy.js": "^6.3.7",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "foreman": "^3.0.1"
+  },
+  "volta": {
+    "node": "16.14.0",
+    "yarn": "1.22.17"
+  }
 }
